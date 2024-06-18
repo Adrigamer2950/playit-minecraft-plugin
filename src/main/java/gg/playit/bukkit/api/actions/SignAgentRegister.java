@@ -1,0 +1,27 @@
+package gg.playit.bukkit.api.actions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import gg.playit.bukkit.messages.SocketAddr;
+
+public class SignAgentRegister implements Action {
+    @JsonProperty("agent_version")
+    public int agentVersion;
+    @JsonProperty("client_addr")
+    @JsonSerialize(using = ToStringSerializer.class)
+    public SocketAddr clientAddr;
+    @JsonProperty("tunnel_addr")
+    @JsonSerialize(using = ToStringSerializer.class)
+    public SocketAddr tunnelAddr;
+
+    @Override
+    public String getPath() {
+        return "/agent";
+    }
+
+    @Override
+    public String getType() {
+        return "sign-agent-register";
+    }
+}
